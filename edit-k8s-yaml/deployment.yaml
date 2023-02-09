@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-server
+  template: # pod template
+    metadata: # we're not specifying a name, since multiple pods will be created
+      labels: 
+        app: my-server
+    spec:
+      containers:
+      - name: server
+        image: yoavklein3/server:1.0
+        ports:
+        - containerPort: 80
